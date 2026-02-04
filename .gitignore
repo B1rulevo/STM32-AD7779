@@ -1,0 +1,17 @@
+# ===== STM32CubeIDE =====
+Debug/
+Release/
+.build/
+.settings/
+.metadata/
+Drivers/
+
+# ===== CubeMX =====
+*.mxproject
+
+# ===== Toolchains =====
+*.o
+*.elf
+*.map
+*.hex
+*.bin

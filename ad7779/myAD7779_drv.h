@@ -1,0 +1,65 @@
+#ifndef MYAD7779_DRV_H_
+
+#include "main.h"
+
+#define MYAD7779_DRV_H_
+
+#define CS_LOW()   HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET)
+#define CS_HIGH()  HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET)
+
+#define SPI_BASE_TIMEOUT 100
+
+#define AD7779_CHANNEL_NUMBER   8
+
+typedef enum {
+  AD7779_HIGH_RES,
+  AD7779_LOW_PWR,
+} ad7779_pwr_mode;
+
+typedef enum {
+  AD7779_INT_REG,
+  AD7779_SD_CONV,
+  AD7779_SAR_CONV,
+} ad7779_spi_op_mode;
+
+typedef enum {
+  AD7779_REFMUX_EXTREF,
+  AD7779_REFMUX_INTREF,
+  AD7779_REFMUX_EXTPWR_AVDD1X_AVSSX,
+  AD7779_REFMUX_EXTREF_INVERSE
+} ad7779_ref_mux;
+
+typedef enum {
+  AD7779_MTRMUX_280mV = 0x02,
+  AD7779_MTRMUX_EXTREF = 0x03,
+  AD7779_MTRMUX_EXTREF_INVERSE = 0x04,
+  AD7779_MTRMUX_EXTREF_ALLNEG = 0x05,
+  AD7779_MTRMUX_INTREF = 0x06,
+  AD7779_MTRMUX_INTREF_INVERSE = 0x07,
+  AD7779_MTRMUX_INTREF_ALLPOS = 0x08,
+  AD7779_MTRMUX_EXTREF_ALLPOS = 0x09
+} ad7779_mtr_mux;
+
+typedef enum
+{
+  AD7779_ENABLE,
+  AD7779_DISABLE,
+} ad7779_state;
+
+typedef enum {
+  AD7779_CH0,
+  AD7779_CH1,
+  AD7779_CH2,
+  AD7779_CH3,
+  AD7779_CH4,
+  AD7779_CH5,
+  AD7779_CH6,
+  AD7779_CH7,
+} ad7779_ch;
+
+void ad7779_init(void);
+
+void AD7779_Get_SigmaDelta_Value(int32_t * values);
+void AD7779_Get_SigmaDelta_Original(i32 *datas);
+
+#endif /* MYAD7779_DRV_H_ */
